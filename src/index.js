@@ -33,19 +33,19 @@ export default {
     }
 
     // Protect dashboard
-    if (url.pathname === "/dashboard" || url.pathname === "/dashboard.html") {
-      const cookies = request.headers.get("Cookie") || "";
+   if (url.pathname === "/dashboard") {
+  const cookies = request.headers.get("Cookie") || "";
 
-      if (!cookies.includes("logged_in=true")) {
-        return Response.redirect("/login", 302);
-      }
+  if (!cookies.includes("logged_in=true")) {
+    return Response.redirect(
+      new URL("/login", request.url),
+      302
+    );
+  }
 
-      return env.ASSETS.fetch(
-        new Request(new URL("/dashboard.html", request.url))
-      );
-    }
+  const dashboard = await env.ASSETS.fetch(
+    new Request(new URL("/dashboard.html", request.url))
+  );
 
-    // Everything else stays public
-    return env.ASSETS.fetch(request);
-  },
-};
+  return dashboard;
+}
