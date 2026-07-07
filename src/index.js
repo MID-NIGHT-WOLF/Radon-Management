@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Redirect /login to Discord
+    // Send users to Discord login
     if (url.pathname === "/login") {
       const redirect = encodeURIComponent(
         "https://radon-management-test.nightgrid-development.workers.dev/callback"
@@ -18,12 +18,34 @@ export default {
       );
     }
 
-    // Placeholder callback
+    // Discord sends user back here
     if (url.pathname === "/callback") {
-      return new Response("Discord login is working! 🎉");
+      // TODO: exchange code with Discord API later
+
+      return new Response(null, {
+        status: 302,
+        headers: {
+          "Location": "/dashboard",
+          "Set-Cookie":
+            "logged_in=true; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=86400",
+        },
+      });
     }
 
-    // Serve static files
+    // Protect dashboard
+    if (url.pathname === "/dashboard" || url.pathname === "/dashboard.html") {
+      const cookies = request.headers.get("Cookie") || "";
+
+      if (!cookies.includes("logged_in=true")) {
+        return Response.redirect("/login", 302);
+      }
+
+      return env.ASSETS.fetch(
+        new Request(new URL("/dashboard.html", request.url))
+      );
+    }
+
+    // Everything else stays public
     return env.ASSETS.fetch(request);
   },
 };
