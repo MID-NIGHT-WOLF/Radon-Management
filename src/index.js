@@ -5,7 +5,7 @@ export default {
     // Redirect /login to Discord
     if (url.pathname === "/login") {
       const redirect = encodeURIComponent(
-        "https://radon-management-test.redwolf201117.workers.dev/callback"
+        "https://radon-management-test.nightgrid-development.workers.dev/callback"
       );
 
       return Response.redirect(
