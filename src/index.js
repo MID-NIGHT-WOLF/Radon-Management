@@ -20,8 +20,6 @@ export default {
 
     // Discord sends user back here
     if (url.pathname === "/callback") {
-      // TODO: exchange code with Discord API later
-
       return new Response(null, {
         status: 302,
         headers: {
@@ -33,19 +31,22 @@ export default {
     }
 
     // Protect dashboard
-   if (url.pathname === "/dashboard") {
-  const cookies = request.headers.get("Cookie") || "";
+    if (url.pathname === "/dashboard") {
+      const cookies = request.headers.get("Cookie") || "";
 
-  if (!cookies.includes("logged_in=true")) {
-    return Response.redirect(
-      new URL("/login", request.url),
-      302
-    );
-  }
+      if (!cookies.includes("logged_in=true")) {
+        return Response.redirect(
+          new URL("/login", request.url),
+          302
+        );
+      }
 
-  const dashboard = await env.ASSETS.fetch(
-    new Request(new URL("/dashboard.html", request.url))
-  );
+      return env.ASSETS.fetch(
+        new Request(new URL("/dashboard.html", request.url))
+      );
+    }
 
-  return dashboard;
-}
+    // Serve everything else
+    return env.ASSETS.fetch(request);
+  },
+};
