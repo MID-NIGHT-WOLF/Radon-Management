@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radon Management Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Inter,sans-serif;
+    background:#0f1117;
+    color:white;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:#171b25;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.profile img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+}
+
+.sidebar{
+    position:fixed;
+    top:70px;
+    left:0;
+    width:230px;
+    height:100%;
+    background:#171b25;
+    padding:25px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin:18px 0;
+    transition:.2s;
+}
+
+.sidebar a:hover{
+    color:#7289da;
+}
+
+.main{
+    margin-left:260px;
+    padding:40px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#171b25;
+    padding:25px;
+    border-radius:12px;
+}
+
+.card h2{
+    margin-top:0;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 18px;
+    background:#5865F2;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:600;
+}
+
+.server{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:20px;
+    background:#171b25;
+    padding:15px;
+    border-radius:10px;
+}
+
+.server img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Radon Management</div>
+
+<div class="profile">
+<img src="https://cdn.discordapp.com/embed/avatars/0.png">
+<div>
+<strong>Username</strong><br>
+<small>Logged in with Discord</small>
+</div>
+</div>
+
+</nav>
+
+<div class="sidebar">
+
+<h3>Navigation</h3>
+
+<a href="#">🏠 Dashboard</a>
+
+<a href="#">🤖 Servers</a>
+
+<a href="#">⚙ Settings</a>
+
+<a href="#">📈 Analytics</a>
+
+<a href="#">📚 Documentation</a>
+
+<a href="#">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Welcome back!</h1>
+
+<p>Select a server below to manage your bot.</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>Total Servers</h2>
+<h1>12</h1>
+</div>
+
+<div class="card">
+<h2>Commands Used</h2>
+<h1>24,981</h1>
+</div>
+
+<div class="card">
+<h2>Bot Status</h2>
+<h1 style="color:#43b581;">Online</h1>
+</div>
+
+</div>
+
+<h2 style="margin-top:50px;">Your Servers</h2>
+
+<div class="server">
+<img src="https://cdn.discordapp.com/embed/avatars/1.png">
+
+<div style="flex:1;">
+<strong>My Discord Server</strong><br>
+Member Count: 182
+</div>
+
+<a class="btn" href="#">Manage</a>
+
+</div>
+
+<div class="server">
+<img src="https://cdn.discordapp.com/embed/avatars/2.png">
+
+<div style="flex:1;">
+<strong>Gaming Community</strong><br>
+Member Count: 642
+</div>
+
+<a class="btn" href="#">Manage</a>
+
+</div>
+
+<div class="server">
+<img src="https://cdn.discordapp.com/embed/avatars/3.png">
+
+<div style="flex:1;">
+<strong>Development Server</strong><br>
+Member Count: 91
+</div>
+
+<a class="btn" href="#">Manage</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
