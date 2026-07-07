@@ -1,3 +1,5 @@
+import dashboard from "../private/dashboard.html";
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -18,7 +20,7 @@ export default {
       );
     }
 
-    // Discord sends user back here
+    // Discord callback
     if (url.pathname === "/callback") {
       return new Response(null, {
         status: 302,
@@ -30,7 +32,7 @@ export default {
       });
     }
 
-    // Protect dashboard
+    // Protected dashboard
     if (url.pathname === "/dashboard") {
       const cookies = request.headers.get("Cookie") || "";
 
@@ -41,12 +43,14 @@ export default {
         );
       }
 
-      return env.ASSETS.fetch(
-        new Request(new URL("/dashboard.html", request.url))
-      );
+      return new Response(dashboard, {
+        headers: {
+          "Content-Type": "text/html",
+        },
+      });
     }
 
-    // Serve everything else
+    // Public files
     return env.ASSETS.fetch(request);
   },
 };
