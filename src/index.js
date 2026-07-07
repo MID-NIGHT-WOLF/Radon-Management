@@ -4,7 +4,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Send users to Discord login
+    // Login redirect
     if (url.pathname === "/login") {
       const redirect = encodeURIComponent(
         "https://radon-management-test.nightgrid-development.workers.dev/callback"
@@ -20,6 +20,7 @@ export default {
       );
     }
 
+
     // Discord callback
     if (url.pathname === "/callback") {
       return new Response(null, {
@@ -32,7 +33,8 @@ export default {
       });
     }
 
-    // Protected dashboard
+
+    // Dashboard protection
     if (url.pathname === "/dashboard") {
       const cookies = request.headers.get("Cookie") || "";
 
@@ -50,7 +52,21 @@ export default {
       });
     }
 
-    // Public files
+
+    // Logout
+    if (url.pathname === "/logout") {
+      return new Response(null, {
+        status: 302,
+        headers: {
+          "Location": "/login",
+          "Set-Cookie":
+            "logged_in=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0",
+        },
+      });
+    }
+
+
+    // Everything else
     return env.ASSETS.fetch(request);
   },
 };
