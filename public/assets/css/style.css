@@ -10,7 +10,10 @@ body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur
 body::before{width:420px;height:420px;background:#4f8cff;left:-120px;top:-120px}
 body::after{width:520px;height:520px;background:#8b5cf6;right:-180px;bottom:-180px}
 nav{max-width:1200px;margin:24px auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;background:var(--surface);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:18px}
-.logo{font-size:1.5rem;font-weight:700}
+.logo {
+  width: 130px;
+  margin-bottom: 20px;
+}
 nav a{color:var(--muted);text-decoration:none;margin-left:20px}
 nav a:hover{color:#fff}
 .container{max-width:1200px;margin:auto;padding:40px 20px}
