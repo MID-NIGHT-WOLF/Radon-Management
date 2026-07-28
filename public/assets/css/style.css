@@ -19,7 +19,35 @@ nav a:hover{color:#fff}
 .container{max-width:1200px;margin:auto;padding:40px 20px}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:80vh}
 .card,.feature{background:var(--surface);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:20px;padding:24px}
-h1{font-size:3.8rem;margin-bottom:16px}
+
+
+
+
+/* 1. Tell the browser where your font file lives */
+@font-face {
+  font-family: 'Drupadi-Regular';
+  src: url('noto.ttf') format('woff2'); /* Change path if needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. Apply it to your H1 */
+h1 {
+  font-family: 'Drupadi-Regular', 'Eurostile', sans-serif;
+  font-size:3.8rem;
+  text-transform: uppercase; /* Drupadi-Regular is all-caps; this forces clean styling */
+  letter-spacing: 0.1em;    /* Adds space between letters for a clean, tech look */
+  font-weight: 800;
+  margin-bottom:16px
+}
+
+
+
+
+
+
+
+
 p{color:var(--muted);line-height:1.7}
 .btn{display:inline-block;margin-top:24px;padding:14px 22px;border-radius:12px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
