@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vrc-radon-dashboard",
+  "compatibility_date": "2026-08-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "main": ".open-next/worker.js"
+}
