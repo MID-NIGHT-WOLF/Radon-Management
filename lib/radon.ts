@@ -221,3 +221,64 @@ export async function getModeratorStats(
     stats: result.data.extra
   };
 }
+export type RadonAuditLog = {
+  group_id: string;
+  id: string;
+  action: number;
+  user?: string;
+  moderator?: string;
+  details?: string | null;
+  timestamp: number;
+  thread_id?: number | null;
+  tags?: number | null;
+  notes?: string | null;
+};
+
+type RadonLogsResponse = {
+  page: number;
+  per_page: number;
+  count: number;
+  logs: RadonAuditLog[];
+};
+
+export async function getLogs(
+  groupId: string,
+  page = 1,
+  perPage = 20
+) {
+  if (DEMO_MODE) {
+    return {
+      ok: true as const,
+      logs: [],
+      page,
+      perPage,
+      count: 0
+    };
+  }
+
+  if (!RADON_API_KEY) {
+    return {
+      ok: false as const,
+      error: "RADON_API_KEY is missing."
+    };
+  }
+
+  const result =
+    await request<RadonResponse<RadonLogsResponse>>(
+      `/groups/${encodeURIComponent(
+        groupId
+      )}/logs?per_page=${perPage}&page=${page}`
+    );
+
+  if (!result.ok) {
+    return result;
+  }
+
+  return {
+    ok: true as const,
+    logs: result.data.extra.logs,
+    page: result.data.extra.page,
+    perPage: result.data.extra.per_page,
+    count: result.data.extra.count
+  };
+}
